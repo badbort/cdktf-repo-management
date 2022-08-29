@@ -1,15 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CdktfTest.Serialization
-{
+namespace CdktfTest.Serialization;
 
-    public class PropertyNamesContractContractResolver : DefaultContractResolver
+
+/// <summary>
+    /// Resolves member mappings for a type, camel casing property names.
+    /// </summary>
+    public class PropertyNamesContractResolver : DefaultContractResolver
     {
         private static readonly object TypeContractCacheLock = new object();
         private static readonly DefaultJsonNameTable NameTable = new DefaultJsonNameTable();
@@ -18,10 +16,7 @@ namespace CdktfTest.Serialization
         /// <summary>
         /// Initializes a new instance of the <see cref="CamelCasePropertyNamesContractResolver"/> class.
         /// </summary>
-        public PropertyNamesContractContractResolver(NamingStrategy strategy)
-        {
-            NamingStrategy = strategy;
-        }
+        public PropertyNamesContractResolver(NamingStrategy namingStrategy) => NamingStrategy = namingStrategy;
 
         /// <summary>
         /// Resolves the contract for a given type.
@@ -36,8 +31,8 @@ namespace CdktfTest.Serialization
             }
 
             // for backwards compadibility the CamelCasePropertyNamesContractResolver shares contracts between instances
-            StructMultiKey<Type, Type> key = new StructMultiKey<Type, Type>(GetType(), type);
-            Dictionary<StructMultiKey<Type, Type>, JsonContract>? cache = _contractCache;
+            (Type, Type) key = (GetType(), type);
+            Dictionary<(Type, Type), JsonContract>? cache = _contractCache;
             if (cache == null || !cache.TryGetValue(key, out JsonContract contract))
             {
                 contract = CreateContract(type);
@@ -46,9 +41,9 @@ namespace CdktfTest.Serialization
                 lock (TypeContractCacheLock)
                 {
                     cache = _contractCache;
-                    Dictionary<StructMultiKey<Type, Type>, JsonContract> updatedCache = (cache != null)
-                        ? new Dictionary<StructMultiKey<Type, Type>, JsonContract>(cache)
-                        : new Dictionary<StructMultiKey<Type, Type>, JsonContract>();
+                    Dictionary<(Type, Type), JsonContract> updatedCache = (cache != null)
+                        ? new Dictionary<(Type, Type), JsonContract>(cache)
+                        : new Dictionary<(Type, Type), JsonContract>();
                     updatedCache[key] = contract;
 
                     _contractCache = updatedCache;
@@ -57,10 +52,4 @@ namespace CdktfTest.Serialization
 
             return contract;
         }
-
-        internal override DefaultJsonNameTable GetNameTable()
-        {
-            return NameTable;
-        }
     }
-}

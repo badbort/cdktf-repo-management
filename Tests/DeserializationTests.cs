@@ -1,6 +1,5 @@
 ﻿using CdktfTest.Serialization;
 using NUnit.Framework;
-using Pulumi.Github;
 using System;
 using System.Collections.Generic;
 using System.Linq;

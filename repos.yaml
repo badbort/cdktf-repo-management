@@ -1,4 +1,7 @@
+# yaml-language-server: $schema=schema.json
+  
 github-actions-test-repo:
+  
   branch_protection:
     - require_conversation_resolution: true
       require_pull_request_reviews:

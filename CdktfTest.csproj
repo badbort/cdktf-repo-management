@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<GenerateProgramFile>false</GenerateProgramFile>
+	<OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashiCorp.Cdktf" Version="0.12.0" />
+    <PackageReference Include="HashiCorp.Cdktf.Providers.Azuread" Version="2.0.26" />
+    <PackageReference Include="HashiCorp.Cdktf.Providers.Azurerm" Version="2.0.10" />
+    <PackageReference Include="HashiCorp.Cdktf.Providers.Github" Version="2.0.28" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="Pulumi.Github" Version="4.16.0" />
+    <PackageReference Include="YamlDotNet" Version="12.0.0" />
+  </ItemGroup>
+
+</Project>

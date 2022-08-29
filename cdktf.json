@@ -1,0 +1,12 @@
+{
+  "language": "csharp",
+  "app": "dotnet run -p CdktfTest.csproj",
+  "projectId": "97638813-eb3e-4b34-9dc2-6568039e053a",
+  "sendCrashReports": "false",
+  "terraformProviders": [],
+  "terraformModules": [],
+  "context": {
+    "excludeStackIdFromLogicalIds": "true",
+    "allowSepCharsInLogicalIds": "true"
+  }
+}
